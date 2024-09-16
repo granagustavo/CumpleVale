@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación a Mis 15 Años</title>
+    <!-- Importar Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif; /* Fuente base para el texto general */
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Altura completa de la pantalla */
+        }
+
+        /* Tarjeta contenedora */
+        .card {
+            background-image: url('https://github.com/granagustavo/CumpleVale/blob/main/Cumple1.jpg?raw=true'); /* Imagen de fondo */
+            background-size: cover; /* Asegura que la imagen cubra toda la tarjeta */
+            background-position: center; /* Ajusta la posición para que la imagen se vea centrada */
+            background-repeat: no-repeat; /* No repetir la imagen */
+            width: 90%; /* Ancho adaptable al dispositivo */
+            max-width: 600px; /* Máximo ancho en dispositivos grandes */
+            height: auto; /* Altura automática */
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            color: #fff; /* Color del texto en blanco para contraste */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background-color: transparent; /* Fondo transparente */
+            position: relative;
+        }
+
+        /* Contenido dentro de la tarjeta */
+        .content {
+            position: relative;
+            top: 0;
+            background-color: rgba(255, 255, 255, 0); /* Fondo completamente transparente */
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            color: #333; /* Color del texto */
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #deb887;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #deb887;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin: 10px 0;
+            color: #deb887;
+        }
+
+        .decoration {
+            font-size: 22px;
+            font-family: 'Dancing Script', cursive;
+            color: #deb887;
+        }
+
+        .countdown {
+            font-size: 24px;
+            color: #deb887; /* Color del texto de la cuenta regresiva */
+            margin-top: 20px;
+        }
+
+        .confirmation-link, .location-link {
+            display: inline-block;
+            background-color: #d2691e;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .confirmation-link:hover, .location-link:hover {
+            background-color: #e05998;
+        }
+
+        /* Media queries para ajustar el diseño en pantallas móviles */
+        @media (max-width: 600px) {
+            .card {
+                height: auto; /* Ajustar la altura automáticamente */
+                padding: 15px; /* Reducir el padding */
+            }
+
+            h1 {
+                font-size: 28px; /* Ajustar el tamaño del título */
+            }
+            
+
+            p {
+                font-size: 16px; /* Ajustar el tamaño del texto */
+            }
+
+            .confirmation-link, .location-link {
+                font-size: 16px; /* Ajustar el tamaño del texto en los botones */
+                padding: 8px 16px; /* Reducir el padding de los botones */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Contenido dentro de la tarjeta -->
+        <div class="content">
+            <h1>¡Soy Ingrid Valentina, te invito a mis 15 años!</h1>
+            <p><strong>Fecha:</strong> 4 de Octubre, 2024</p>
+            <p><strong>Lugar de la misa:</strong> Parroquia Virgen la Candelaria, 18:00 hs</p>
+            <p><a class="location-link" href="https://maps.app.goo.gl/o8264QxouHsEqjBL7" target="_blank">Ver ubicación de la misa</a></p>
+            <p><strong>Lugar de la fiesta:</strong> Salón Niagara Recepciones, 20:00 hs</p>
+            <p><a class="location-link" href="https://maps.app.goo.gl/pk6hWw2MNqXPLh8y8" target="_blank">Ver ubicación de la fiesta</a></p>
+
+            <!-- Enlace de confirmación de asistencia -->
+            <a class="confirmation-link" href="https://docs.google.com/forms/d/e/1FAIpQLSdNo6UStEe1BOfsZvRDFXAMJ1k1jEYW24bVhyn9VVokbHuorA/viewform?usp=sf_link" target="_blank">
+                Confirmar asistencia
+            </a>
+
+            <div id="countdown" class="countdown"></div> <!-- Aquí se mostrará la cuenta regresiva -->
+            <h2>Tenida:  Elegante</h2>
+        </div>
+    </div>
+
+    <script>
+        // Función para calcular la cuenta regresiva
+        function countdown() {
+            const eventDate = new Date("October 4, 2024 19:00:00").getTime();
+            const now = new Date().getTime();
+            const timeLeft = eventDate - now;
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                days + " días, " + hours + " horas, " + minutes + " minutos, " + seconds + " segundos.";
+
+            // Cuando la cuenta regresiva termina
+            if (timeLeft < 0) {
+                document.getElementById("countdown").innerHTML = "¡El evento ya ha comenzado!";
+            }
+        }
+
+        // Actualizar la cuenta regresiva cada segundo
+        setInterval(countdown, 1000);
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
